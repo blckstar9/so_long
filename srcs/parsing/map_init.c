@@ -6,7 +6,7 @@
 /*   By: aybelaou <aybelaou@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 16:28:10 by aybelaou          #+#    #+#             */
-/*   Updated: 2024/12/30 18:54:40 by aybelaou         ###   ########.fr       */
+/*   Updated: 2024/12/30 18:59:36 by aybelaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,20 +78,21 @@ int get_matrix_dimensions(int *width, int *height, char *filename)
 int fill_map_struct(t_map *map, char **matrix, int width, int height, int fd)
 {
 	char	*line;
+	int		i;
 
 	line = get_next_line(fd);
 	if (!line)
 		return (-1);
+	i = 0;
 	while (line)
 	{
 		if (ft_strlen(line) != width)
 			return (free(line), -1);
-		*matrix = line;
-		matrix++;
+		matrix[i++] = line;
 		line = get_next_line(fd);
 	}
 	if (check_matrix_walls(matrix, width, height) < 0)
-		return (-1);
+		return (free(line), -1);
 	map->map = matrix;
 	map->width = width;
 	map->height = height;
@@ -116,11 +117,11 @@ int map_init(char *filename, t_map *map)
 	matrix = ft_calloc(sizeof(char *), (height + 1));
 	if (!matrix)
 		return (close(fd), -1);
-	i = -1;
+	i = 0;
 	if (fill_map_struct(map, matrix, width, height, fd) < 0)
 	{	
-        while (++i < height)
-            free(matrix[i]);
+        while (i < height)
+            free(matrix[i++]);
         return (free(matrix), close(fd), -1);
 	}
 	close(fd);
