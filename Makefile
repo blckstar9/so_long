@@ -6,7 +6,7 @@
 #    By: aybelaou <aybelaou@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/30 16:59:31 by aybelaou          #+#    #+#              #
-#    Updated: 2024/12/30 17:02:17 by aybelaou         ###   ########.fr        #
+#    Updated: 2024/12/31 19:07:18 by aybelaou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,8 +28,7 @@ RM 		= rm -rf
 
 OBJS_DIR = objs
 SRCS_DIR = srcs
-SRCS 	= srcs/parsing/map_init.c
-
+SRCS 	= $(wildcard $(SRCS_DIR)/parsing/*.c) $(wildcard $(SRCS_DIR)/main/*.c)
 
 OBJS = $(addprefix $(OBJS_DIR)/, $(SRCS:.c=.o))
 MLX_DIR = ./minilibx-linux
@@ -52,9 +51,12 @@ $(NAME) : $(OBJS) $(LIBFT)
 	@make -C libft
 	@$(CC) $(OBJS) $(LIBFT) $(CFLAGS) -g $(MLX_LIB) $(MLX) -o $(NAME)
 
-$(OBJS_DIR)/%.o: $(SRCS_DIR)/%.c
+$(OBJS_DIR)/%.o: %.c
 	@mkdir -p $(dir $@)
-	@$(CC) $(CFLAGS) $(INC) -c $< -o $@	
+	@$(CC) $(CFLAGS) -c $< -o $@	
+
+$(LIBFT):
+	@make -C libft
 
 fclean : clean
 	@make fclean -C libft

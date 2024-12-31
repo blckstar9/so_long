@@ -6,7 +6,7 @@
 /*   By: aybelaou <aybelaou@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 15:52:34 by aybelaou          #+#    #+#             */
-/*   Updated: 2024/12/30 16:32:43 by aybelaou         ###   ########.fr       */
+/*   Updated: 2024/12/31 19:43:14 by aybelaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 #include "../libft/inc/gnl_inc/get_next_line.h"
 #include "../libft/inc/libft_inc/libft.h"
 #include "../libft/inc/printf_inc/ft_printf.h"
+#include <stdio.h>
 
 #define W_HEIGHT 1080
 #define W_WIDTH 1920
@@ -39,5 +40,9 @@ typedef struct s_map
 	int		height;
 	char	**map;
 }	t_map;
-
+int map_init(char *filename, t_map *map);
+int fill_map_struct(t_map *map, char **matrix, int width, int height, int fd);
+int get_matrix_dimensions(int *width, int *height, char *filename);
+int check_matrix_walls(char **matrix, int width, int height);
+int	has_ber_extension(const char *filename);
 #endif

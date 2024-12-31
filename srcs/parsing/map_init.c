@@ -6,7 +6,7 @@
 /*   By: aybelaou <aybelaou@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 16:28:10 by aybelaou          #+#    #+#             */
-/*   Updated: 2024/12/30 18:59:36 by aybelaou         ###   ########.fr       */
+/*   Updated: 2024/12/31 19:58:31 by aybelaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,52 +51,58 @@ int get_matrix_dimensions(int *width, int *height, char *filename)
     char *line;
     int max_width;
     int max_height;
-	int fd;
-	
-	fd = open(filename, O_RDONLY);
+    int fd;
+    
+    fd = open(filename, O_RDONLY);
     if (fd < 0)
-        return (-1);
-	line = get_next_line(fd);
-	if (!line)
-		return (close(fd), -1);
-	max_width = ft_strlen(line);
-	max_height = 0;
+    	return (-1);
+    line = get_next_line(fd);
+    if (!line)
+    	return (close(fd), -1);
+    if (line[ft_strlen(line) - 1] == '\n')
+    	line[ft_strlen(line) - 1] = '\0';
+    max_width = ft_strlen(line);
+    max_height = 0;
     while (line)
     {  
-        if (ft_strlen(line) != max_width)
-            return (free(line), close(fd), -1);
+        if ((int)ft_strlen(line) != max_width)
+        	return (free(line), close(fd), -1);
         max_height++;
-		free(line);
-		line = get_next_line(fd);
+        free(line);
+        line = get_next_line(fd);
+        if (line && line[ft_strlen(line) - 1] == '\n')
+            line[ft_strlen(line) - 1] = '\0';
     }
     *width = max_width;
     *height = max_height;
-	close(fd);
+    close(fd);
     return (0);
 }
 
 int fill_map_struct(t_map *map, char **matrix, int width, int height, int fd)
 {
-	char	*line;
-	int		i;
+    char *line;
+    int i;
 
-	line = get_next_line(fd);
-	if (!line)
-		return (-1);
-	i = 0;
-	while (line)
-	{
-		if (ft_strlen(line) != width)
-			return (free(line), -1);
-		matrix[i++] = line;
-		line = get_next_line(fd);
-	}
-	if (check_matrix_walls(matrix, width, height) < 0)
-		return (free(line), -1);
-	map->map = matrix;
-	map->width = width;
-	map->height = height;
-	return (0);
+    line = get_next_line(fd);
+    if (!line)
+        return (-1);
+    i = 0;
+    while (line)
+    {
+        if (line[ft_strlen(line) - 1] == '\n')
+            line[ft_strlen(line) - 1] = '\0';
+        if ((int)ft_strlen(line) != width)
+        	return (free(line), -1);
+        matrix[i++] = line;
+        line = get_next_line(fd);
+    }
+    if (check_matrix_walls(matrix, width, height) < 0)
+        return (free(line), -1);
+    map->map = matrix;
+    map->width = width;
+    map->height = height;
+    return (0);
 }
 
 int map_init(char *filename, t_map *map)
