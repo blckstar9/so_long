@@ -6,7 +6,7 @@
 /*   By: aybelaou <aybelaou@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 15:52:34 by aybelaou          #+#    #+#             */
-/*   Updated: 2025/01/02 20:24:56 by aybelaou         ###   ########.fr       */
+/*   Updated: 2025/01/03 19:16:42 by aybelaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,18 +36,18 @@
 
 typedef struct s_map
 {
+	int		fd;
 	int		width;
 	int		height;
 	char	**map;
 }	t_map;
 int map_init(char *filename, t_map *map);
-void clear_newline(char *line);
-int fill_map_struct(t_map *map, char **matrix, int width, int height, int fd);
+int	has_ber_extension(const char *filename);
 int get_matrix_dimensions(int *width, int *height, char *filename);
+void clear_newline(char *line);
 int check_matrix_walls(char **matrix, int width, int height);
 int check_matrix_interior(char **matrix, int width, int height);
-int	has_ber_extension(const char *filename);
-void free_map(t_map *map);
-void free_matrix(char **matrix);
 int is_map_valid(char **matrix, int width, int height);
+void free_matrix(char **matrix);
+void free_map(t_map *map);
 #endif
