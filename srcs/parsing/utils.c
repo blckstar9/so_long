@@ -6,7 +6,7 @@
 /*   By: aybelaou <aybelaou@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 18:36:01 by aybelaou          #+#    #+#             */
-/*   Updated: 2025/01/03 18:28:19 by aybelaou         ###   ########.fr       */
+/*   Updated: 2025/01/03 19:31:59 by aybelaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,10 @@ int	check_matrix_interior(char **matrix, int width, int height)
 			if (matrix[i][j] != EMPTY_SPACE && matrix[i][j] != WALL
 			&& matrix[i][j] != COLLECTIBLE && matrix[i][j] != EXIT
 			&& matrix[i][j] != PLAYER)
+			{
+				ft_printf("Invalid character '%c' at (%d, %d)\n", matrix[i][j], i, j);
 				return (-1);
+			}
 		}
 	}
 	return (0);
