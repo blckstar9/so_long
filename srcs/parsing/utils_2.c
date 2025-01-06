@@ -6,13 +6,13 @@
 /*   By: aybelaou <aybelaou@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 19:53:01 by aybelaou          #+#    #+#             */
-/*   Updated: 2025/01/03 19:35:44 by aybelaou         ###   ########.fr       */
+/*   Updated: 2025/01/06 19:29:17 by aybelaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/so_long.h"
 
-static int	count_character(char **matrix, int width, int height, char c)
+int	count_character(char **matrix, int width, int height, char c)
 {
 	int	i;
 	int	j;
