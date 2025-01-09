@@ -6,7 +6,7 @@
 /*   By: aybelaou <aybelaou@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 20:33:20 by aybelaou          #+#    #+#             */
-/*   Updated: 2025/01/06 20:56:15 by aybelaou         ###   ########.fr       */
+/*   Updated: 2025/01/09 20:26:13 by aybelaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,25 +17,30 @@ int	is_within_bounds(int x, int y, int width, int height)
 	return (x >= 0 && x < width && y >= 0 && y < height);
 }
 
-int	init_visited(int width, int height)
+int	**init_visited(int width, int height)
 {
 	int	**visited;
 	int	i;
 
-	visited = (int **)ft_calloc(sizeof(int *), height);
+	visited = (int **)ft_calloc(height, sizeof(int *));
 	if (!visited)
 		return (NULL);
 	i = -1;
 	while (++i < height)
 	{
-		visited[i] = (int *)ft_calloc(sizeof(int), width);
+		visited[i] = (int *)ft_calloc(width, sizeof(int));
 		if (!visited[i])
+		{
+			while (--i >= 0)
+				free(visited[i]);
+			free(visited);
 			return (NULL);
+		}
 	}
 	return (visited);
 }
 
-t_point	*init_queue(int width, int height, int start_x, int start_y)
+t_queue	*init_queue(int width, int height, int start_x, int start_y)
 {
 	t_queue	*queue;
 
@@ -62,15 +67,14 @@ void	initialize_directions(t_point *directions)
 	directions[3] = (t_point){-1, 0};
 }
 
-t_bfs_params	init_bfs_params(char **matrix, int width, int height, int **visited, t_queue *queue)
+void	free_resources(int **visited, int height, t_queue *queue)
 {
-    t_bfs_params	params;
+	int	i;
 
-	params.matrix = matrix;
-	params.width = width;
-	params.height = height;
-	params.visited = visited;
-	params.queue = queue;
-	params.collectibles = count_character(matrix, width, height, COLLECTIBLE);
-	return (params);
+	i = -1;
+	while (++i < height)
+		free(visited[i]);
+	free(visited);
+	free(queue->data);
+	free(queue);
 }

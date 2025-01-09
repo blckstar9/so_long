@@ -6,7 +6,7 @@
 #    By: aybelaou <aybelaou@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/30 16:59:31 by aybelaou          #+#    #+#              #
-#    Updated: 2024/12/31 19:07:18 by aybelaou         ###   ########.fr        #
+#    Updated: 2025/01/09 19:37:08 by aybelaou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,8 @@ RM 		= rm -rf
 
 OBJS_DIR = objs
 SRCS_DIR = srcs
-SRCS 	= $(wildcard $(SRCS_DIR)/parsing/*.c) $(wildcard $(SRCS_DIR)/main/*.c)
+SRCS 	= $(wildcard $(SRCS_DIR)/parsing/*.c) $(wildcard $(SRCS_DIR)/main/*.c) \
+			$(wildcard $(SRCS_DIR)/flood_fill/*.c)
 
 OBJS = $(addprefix $(OBJS_DIR)/, $(SRCS:.c=.o))
 MLX_DIR = ./minilibx-linux
