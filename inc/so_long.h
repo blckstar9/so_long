@@ -6,7 +6,7 @@
 /*   By: aybelaou <aybelaou@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 15:52:34 by aybelaou          #+#    #+#             */
-/*   Updated: 2025/01/09 20:24:34 by aybelaou         ###   ########.fr       */
+/*   Updated: 2025/01/10 19:11:21 by aybelaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ typedef struct s_map
 	int		fd;
 	int		width;
 	int		height;
+	int		player_x;
+	int		player_y;
 	char	**map;
 }	t_map;
 
@@ -55,5 +57,5 @@ void	free_matrix(char **matrix);
 int		is_map_valid(char **matrix, int width, int height);
 int		count_character(char **matrix, int width, int height, char c);
 int		is_path_valid(t_map *map, int start_x, int start_y);
-
+int		init_player(t_map *map);
 #endif

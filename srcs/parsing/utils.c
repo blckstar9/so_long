@@ -6,7 +6,7 @@
 /*   By: aybelaou <aybelaou@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 18:36:01 by aybelaou          #+#    #+#             */
-/*   Updated: 2025/01/03 19:31:59 by aybelaou         ###   ########.fr       */
+/*   Updated: 2025/01/10 20:01:31 by aybelaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,14 +54,16 @@ int	get_matrix_dimensions(int *width, int *height, char *filename)
 	while (line)
 	{
 		if ((int)ft_strlen(line) != *width)
+		{
+			ft_printf("Map is not rectangular\n");
 			return (free(line), close(fd), -1);
+		}
 		(*height)++;
 		free(line);
 		line = get_next_line(fd);
 		clear_newline(line);
 	}
-	close(fd);
-	return (0);
+	return (close(fd), 0);
 }
 
 int	check_matrix_interior(char **matrix, int width, int height)

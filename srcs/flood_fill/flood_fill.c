@@ -6,7 +6,7 @@
 /*   By: aybelaou <aybelaou@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 19:21:44 by aybelaou          #+#    #+#             */
-/*   Updated: 2025/01/09 20:26:04 by aybelaou         ###   ########.fr       */
+/*   Updated: 2025/01/10 21:13:58 by aybelaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,10 @@ static int	process_neighbor(t_bfs_params *params, t_point current,
 	new_x = current.x + direction.x;
 	new_y = current.y + direction.y;
 	if (is_within_bounds(new_x, new_y, params->width, params->height)
-		&& !params->visited[new_y][new_x]
+		&& params->visited[new_y][new_x] != 'v'
 		&& params->matrix[new_y][new_x] != WALL)
 	{
-		params->visited[new_y][new_x] = 1;
+		params->visited[new_y][new_x] = 'v';
 		params->queue->data[params->queue->rear++] = (t_point){new_x, new_y};
 		if (params->matrix[new_y][new_x] == COLLECTIBLE)
 			params->collectibles--;

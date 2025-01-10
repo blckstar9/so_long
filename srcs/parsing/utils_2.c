@@ -6,7 +6,7 @@
 /*   By: aybelaou <aybelaou@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 19:53:01 by aybelaou          #+#    #+#             */
-/*   Updated: 2025/01/06 19:29:17 by aybelaou         ###   ########.fr       */
+/*   Updated: 2025/01/10 20:05:14 by aybelaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,6 @@ int	is_map_valid(char **matrix, int width, int height)
         ft_printf("Invalid map: Incorrect number of players\n");
         return (-1);
     }
-    ft_printf("Map is valid\n");
+    ft_printf("1 player, 1 exit & 1 or more collectibles are present\n");
     return (0);
 }

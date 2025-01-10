@@ -6,7 +6,7 @@
 /*   By: aybelaou <aybelaou@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 16:28:10 by aybelaou          #+#    #+#             */
-/*   Updated: 2025/01/09 20:32:44 by aybelaou         ###   ########.fr       */
+/*   Updated: 2025/01/10 20:54:33 by aybelaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ int	fill_map_struct(t_map *map, char **matrix)
 		return (free_matrix(matrix), -1);
 	}
 	map->map = matrix;
+	if (init_player(map) < 0)
+		return (free_matrix(matrix), -1);
 	return (0);
 }
 
@@ -71,10 +73,10 @@ int map_init(char *filename, t_map *map)
         return (close(map->fd), -1);
     }
     close(map->fd);
-    if (!is_path_valid(map, start_x, start_y))
+    if (!is_path_valid(map, map->player_x, map->player_y))
     {
         ft_printf("Invalid path in map\n");
         return (free_matrix(matrix), -1);
     }
-    return (0);
+    return (ft_printf("Valid path in map\n"), 0);
 }
