@@ -6,7 +6,7 @@
 /*   By: aybelaou <aybelaou@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 15:52:34 by aybelaou          #+#    #+#             */
-/*   Updated: 2025/01/10 19:11:21 by aybelaou         ###   ########.fr       */
+/*   Updated: 2025/01/15 20:06:57 by aybelaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 
 # define W_HEIGHT 1080
 # define W_WIDTH 1920
-# define TILE_SIZE 64
+# define TILE 64
 # define WALL '1'
 # define EMPTY_SPACE '0'
 # define COLLECTIBLE 'C'
@@ -43,6 +43,13 @@ typedef struct s_map
 	int		player_x;
 	int		player_y;
 	char	**map;
+	void	*mlx;
+	void	*win;
+	void	*wall;
+	void	*empty_space;
+	void	*collectible;
+	void	*exit;
+	void	*player;
 }	t_map;
 
 int		map_init(char *filename, t_map *map);
