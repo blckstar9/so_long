@@ -69,7 +69,7 @@ void test_map_init_no_walls()
 
 int main()
 {
-     test_map_init_valid();
+    //  test_map_init_valid();
     //  test_map_init_no_collectibles();
     //  test_map_init_no_exit();
     //  test_map_init_no_player();

@@ -6,7 +6,7 @@
 /*   By: aybelaou <aybelaou@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 15:52:34 by aybelaou          #+#    #+#             */
-/*   Updated: 2025/01/15 20:06:57 by aybelaou         ###   ########.fr       */
+/*   Updated: 2025/01/16 22:08:05 by aybelaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # include "../minilibx-linux/mlx.h"
 # include "hooks.h"
 # include "flood_fill.h"
+# include "graphics.h"
 # include "../libft/inc/gnl_inc/get_next_line.h"
 # include "../libft/inc/libft_inc/libft.h"
 # include "../libft/inc/printf_inc/ft_printf.h"
@@ -42,6 +43,9 @@ typedef struct s_map
 	int		height;
 	int		player_x;
 	int		player_y;
+	int		exit_x;
+	int		exit_y;
+	int		n_collect;
 	char	**map;
 	void	*mlx;
 	void	*win;
@@ -64,5 +68,7 @@ void	free_matrix(char **matrix);
 int		is_map_valid(char **matrix, int width, int height);
 int		count_character(char **matrix, int width, int height, char c);
 int		is_path_valid(t_map *map, int start_x, int start_y);
-int		init_player(t_map *map);
+int		find_player(t_map *map);
+int		find_exit(t_map *map);
+
 #endif

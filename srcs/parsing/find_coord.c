@@ -6,47 +6,52 @@
 /*   By: aybelaou <aybelaou@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 18:50:57 by aybelaou          #+#    #+#             */
-/*   Updated: 2025/01/10 19:24:48 by aybelaou         ###   ########.fr       */
+/*   Updated: 2025/01/16 22:02:48 by aybelaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/so_long.h"
 
-static int *find_player(char **matrix, int width, int height)
+int	find_player(t_map *map)
 {
-	int *coord;
-	int i;
-	int j;
+	int	i;
+	int	j;
 
-	coord = malloc(sizeof(int) * 2);
-	if (!coord)
-		return (NULL);
 	i = -1;
-	while (++i < height)
+	while (++i < map->height)
 	{
 		j = -1;
-		while (++j < width)
+		while (++j < map->width)
 		{
-			if (matrix[i][j] == PLAYER)
+			if (map->map[i][j] == PLAYER)
 			{
-				coord[0] = i;
-				coord[1] = j;
-				return (coord);
+				map->player_x = j;
+				map->player_y = i;
+				return (0);
 			}
 		}
 	}
-	return (NULL);
+	return (-1);
 }
 
-int	init_player(t_map *map)
+int	find_exit(t_map *map)
 {
-	int *coord;
+	int	i;
+	int	j;
 
-	coord = find_player(map->map, map->width, map->height);
-	if (!coord)
-		return (ft_printf("Player not found\n"), -1);
-	map->player_x = coord[1];
-	map->player_y = coord[0];
-	free(coord);
-	return (0);
+	i = -1;
+	while (++i < map->height)
+	{
+		j = -1;
+		while (++j < map->width)
+		{
+			if (map->map[i][j] == EXIT)
+			{
+				map->exit_x = j;
+				map->exit_y = i;
+				return (0);
+			}
+		}
+	}
+	return (-1);
 }
