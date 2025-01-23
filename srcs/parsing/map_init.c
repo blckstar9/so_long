@@ -6,19 +6,19 @@
 /*   By: aybelaou <aybelaou@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 16:28:10 by aybelaou          #+#    #+#             */
-/*   Updated: 2025/01/16 21:52:50 by aybelaou         ###   ########.fr       */
+/*   Updated: 2025/01/23 19:30:32 by aybelaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/so_long.h"
 
-static int	check_matrix(char **matrix, int width, int height)
+static int	check_matrix(t_map *map, char **matrix, int width, int height)
 {
 	ft_printf("Checking matrix walls...\n");
 	if (check_matrix_walls(matrix, width, height) < 0)
 		return (-1);
 	ft_printf("Checking matrix interior...\n");
-	if (check_matrix_interior(matrix, width, height) < 0)
+	if (check_matrix_interior(map, matrix, width, height) < 0)
 		return (-1);
 	return (0);
 }
@@ -41,7 +41,7 @@ int	fill_map_struct(t_map *map, char **matrix)
 		matrix[i++] = line;
 		line = get_next_line(map->fd);
 	}
-	if (check_matrix(matrix, map->width, map->height) < 0)
+	if (check_matrix(map, matrix, map->width, map->height) < 0)
 	{
 		ft_printf("Invalid map\n");
 		return (free_matrix(matrix), -1);

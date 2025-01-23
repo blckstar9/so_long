@@ -3,6 +3,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+int close_window(t_map *map)
+{
+    mlx_destroy_window(map->mlx, map->win);
+    exit(0);
+    return (0);
+}
+
 void test_graphics()
 {
     t_map map;
@@ -28,6 +35,10 @@ void test_graphics()
     draw_wnc(&map);
     draw_player(&map);
     draw_exit(&map);
+
+    // Set up event handling to close the window
+    mlx_hook(map.win, 17, 0, close_window, &map); // Handle window close event
+    mlx_key_hook(map.win, close_window, &map); // Handle key press event
 
     // Display the window and wait for user input to close
     mlx_loop(map.mlx);

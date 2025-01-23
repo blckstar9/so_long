@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   map_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aybelaou <aybelaou@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 18:36:01 by aybelaou          #+#    #+#             */
-/*   Updated: 2025/01/10 20:01:31 by aybelaou         ###   ########.fr       */
+/*   Updated: 2025/01/23 19:29:02 by aybelaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,13 +66,13 @@ int	get_matrix_dimensions(int *width, int *height, char *filename)
 	return (close(fd), 0);
 }
 
-int	check_matrix_interior(char **matrix, int width, int height)
+int	check_matrix_interior(t_map *map, char **matrix, int width, int height)
 {
 	int	i;
 	int	j;
 
 	i = 0;
-	if (is_map_valid(matrix, width, height) < 0)
+	if (is_map_valid(map, matrix, width, height) < 0)
 		return (-1);
 	while (++i < height - 1)
 	{

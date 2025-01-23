@@ -6,7 +6,7 @@
 /*   By: aybelaou <aybelaou@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 19:21:44 by aybelaou          #+#    #+#             */
-/*   Updated: 2025/01/10 21:13:58 by aybelaou         ###   ########.fr       */
+/*   Updated: 2025/01/23 20:48:01 by aybelaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ int	is_path_valid(t_map *map, int start_x, int start_y)
 	params.queue = queue;
 	params.collectibles
 		= count_character(map->map, map->width, map->height, COLLECTIBLE);
-	visited[start_y][start_x] = 1;
+	visited[start_y][start_x] = 'v';
 	result = bfs_traversal(&params);
 	free_resources(visited, map->height, queue);
 	return (result);
