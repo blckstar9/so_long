@@ -6,7 +6,7 @@
 /*   By: aybelaou <aybelaou@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 16:28:10 by aybelaou          #+#    #+#             */
-/*   Updated: 2025/01/24 20:06:55 by aybelaou         ###   ########.fr       */
+/*   Updated: 2025/01/24 22:01:40 by aybelaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,31 +52,31 @@ int	fill_map_struct(t_map *map, char **matrix)
 	return (0);
 }
 
-int map_init(char *filename, t_map *map)
+int	map_init(char *filename, t_map *map)
 {
-    char	**matrix;
+	char	**matrix;
 
-    ft_printf("Initializing map from file: %s\n", filename);
-    if (!has_ber_extension(filename))
-        return (-1);
-    if (get_matrix_dimensions(&map->width, &map->height, filename) < 0)
-        return (-1);
-    map->fd = open(filename, O_RDONLY);
-    if (map->fd < 0)
-        return (-1);
-    matrix = ft_calloc(sizeof(char *), (map->height + 1));
-    if (!matrix)
-        return (close(map->fd), -1);
-    if (fill_map_struct(map, matrix) < 0)
-    {
-        ft_printf("Failed to fill map structure\n");
-        return (close(map->fd), -1);
-    }
-    close(map->fd);
-    if (!is_path_valid(map, map->player_x, map->player_y))
-    {
-        ft_printf("Invalid path in map\n");
-        return (free_matrix(matrix), -1);
-    }
-    return (ft_printf("Valid path in map\n"), 0);
+	ft_printf("Initializing map from file: %s\n", filename);
+	if (!has_ber_extension(filename))
+		return (-1);
+	if (get_matrix_dimensions(&map->width, &map->height, filename) < 0)
+		return (-1);
+	map->fd = open(filename, O_RDONLY);
+	if (map->fd < 0)
+		return (-1);
+	matrix = ft_calloc(sizeof(char *), (map->height + 1));
+	if (!matrix)
+		return (close(map->fd), -1);
+	if (fill_map_struct(map, matrix) < 0)
+	{
+		ft_printf("Failed to fill map structure\n");
+		return (close(map->fd), -1);
+	}
+	close(map->fd);
+	if (!is_path_valid(map, map->player_x, map->player_y))
+	{
+		ft_printf("Invalid path in map\n");
+		return (free_matrix(matrix), -1);
+	}
+	return (ft_printf("Valid path in map\n"), 0);
 }
