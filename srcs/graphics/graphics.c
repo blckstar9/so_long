@@ -6,13 +6,13 @@
 /*   By: aybelaou <aybelaou@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 19:38:23 by aybelaou          #+#    #+#             */
-/*   Updated: 2025/01/16 22:03:43 by aybelaou         ###   ########.fr       */
+/*   Updated: 2025/01/24 20:07:03 by aybelaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/so_long.h"
 
-void	draw_floor(t_map *map)
+void	draw_base(t_map *map)
 {
 	int	x;
 	int	y;
@@ -23,29 +23,27 @@ void	draw_floor(t_map *map)
 		x = -1;
 		while (++x < map->width)
 			mlx_put_image_to_window
-				(map->mlx, map->win, map->empty_space, x * TILE, y * TILE);
+				(map->mlx, map->win, map->wall, x * TILE, y * TILE);
 	}
 }
 
-void	draw_wnc(t_map *map)
+void draw_enc(t_map *map)
 {
-	int	x;
-	int	y;
+    int x;
+    int y;
 
-	y = -1;
-	while (++y < map->height)
-	{
-		x = -1;
-		while (++x < map->width)
-		{
-			if (map->map[y][x] == WALL)
-				mlx_put_image_to_window
-					(map->mlx, map->win, map->wall, x * TILE, y * TILE);
-			if (map->map[y][x] == COLLECTIBLE)
-				mlx_put_image_to_window
-					(map->mlx, map->win, map->collectible, x * TILE, y * TILE);
-		}
-	}
+    y = -1;
+    while (++y < map->height && map->map[y])
+    {
+        x = -1;
+        while (++x < map->width)
+        {
+            if (map->map[y][x] == EMPTY_SPACE)
+                mlx_put_image_to_window(map->mlx, map->win, map->empty_space, x * TILE, y * TILE);
+            else if (map->map[y][x] == COLLECTIBLE)
+                mlx_put_image_to_window(map->mlx, map->win, map->collectible, x * TILE, y * TILE);
+        }
+    }
 }
 
 void	draw_player(t_map *map)
@@ -58,7 +56,6 @@ void	draw_player(t_map *map)
 
 void	draw_exit(t_map *map)
 {
-	find_exit(map);
 	mlx_put_image_to_window
 		(map->mlx, map->win, map->exit
 			, map->exit_x * TILE, map->exit_y * TILE);

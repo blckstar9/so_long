@@ -6,7 +6,7 @@
 /*   By: aybelaou <aybelaou@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 15:52:34 by aybelaou          #+#    #+#             */
-/*   Updated: 2025/01/23 20:35:08 by aybelaou         ###   ########.fr       */
+/*   Updated: 2025/01/24 20:02:56 by aybelaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,8 +78,8 @@ int		find_player(t_map *map);
 int		find_exit(t_map *map);
 int		init_window(t_map *map);
 int		init_images(t_map *map);
-void	draw_floor(t_map *map);
-void	draw_wnc(t_map *map);
+void	draw_base(t_map *map);
+void	draw_enc(t_map *map);
 void	draw_player(t_map *map);
 void	draw_exit(t_map *map);
 #endif

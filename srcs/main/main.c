@@ -6,7 +6,7 @@
 /*   By: aybelaou <aybelaou@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 19:23:33 by aybelaou          #+#    #+#             */
-/*   Updated: 2025/01/22 21:48:46 by aybelaou         ###   ########.fr       */
+/*   Updated: 2025/01/24 18:33:26 by aybelaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,5 +36,6 @@
 // 		free_map(&map);
 // 		return (ft_printf("Error\nFailed to initialize gamespace\n"), -1);
 // 	}
+// 	exit(1);
 // 	return (0);
 // }

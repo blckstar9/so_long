@@ -6,7 +6,7 @@
 /*   By: aybelaou <aybelaou@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 16:28:10 by aybelaou          #+#    #+#             */
-/*   Updated: 2025/01/23 19:30:32 by aybelaou         ###   ########.fr       */
+/*   Updated: 2025/01/24 20:06:55 by aybelaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int	fill_map_struct(t_map *map, char **matrix)
 		return (free_matrix(matrix), -1);
 	}
 	map->map = matrix;
-	if (find_player(map) < 0)
+	if (find_player(map) < 0 || find_exit(map) < 0)
 		return (free_matrix(matrix), -1);
 	return (0);
 }
