@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   coord.c                                            :+:      :+:    :+:   */
+/*   find_coord.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aybelaou <aybelaou@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 18:50:57 by aybelaou          #+#    #+#             */
-/*   Updated: 2025/01/16 22:02:48 by aybelaou         ###   ########.fr       */
+/*   Updated: 2025/01/27 21:03:47 by aybelaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ int	find_player(t_map *map)
 		{
 			if (map->map[i][j] == PLAYER)
 			{
-				map->player_x = j;
-				map->player_y = i;
+				map->p_x = j;
+				map->p_y = i;
 				return (0);
 			}
 		}
@@ -47,8 +47,8 @@ int	find_exit(t_map *map)
 		{
 			if (map->map[i][j] == EXIT)
 			{
-				map->exit_x = j;
-				map->exit_y = i;
+				map->e_x = j;
+				map->e_y = i;
 				return (0);
 			}
 		}

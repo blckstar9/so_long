@@ -14,20 +14,36 @@
 #define WHITE "\033[37m"
 
 // Function to close the window and exit the program
-int close_window(t_map *map)
-{
-    mlx_destroy_window(map->mlx, map->win);
-    exit(0);
-    return (0);
-}
+// int close_window(t_map *map)
+// {
+//     mlx_destroy_window(map->mlx, map->win);
+//     free_map(map);
+//     exit(0);
+//     return (0);
+// }
 
 // Function to handle key press events
-int handle_key(int key, t_map *map)
-{
-    if (key == 65307) // Escape key code
-        close_window(map);
-    return (0);
-}
+// int handle_key(int key, t_map *map)
+// {
+//     int x;
+//     int y;
+
+//     if (key == XK_Escape)
+//         close_window(map);
+
+//     if (translate_key(key, &x, &y))
+//     {
+//         if (move_player(map, x, y))
+//         {
+//             draw_floor(map);
+//             draw_wnc(map);
+//             draw_player(map);
+//             draw_exit(map); // Draw the exit only if all collectibles are collected
+//         }
+//     }
+
+//     return (0);
+// }
 
 void test_graphics()
 {
@@ -42,9 +58,9 @@ void test_graphics()
 
     // Draw the map
     draw_base(&map);
-     draw_enc(&map);
-     draw_player(&map);
-     draw_exit(&map);
+    draw_enc(&map);
+    draw_player(&map);
+    // Do not draw the exit initially
 
     // Set up event handling to close the window
     mlx_hook(map.win, 17, 0, close_window, &map); // Handle window close event

@@ -6,7 +6,7 @@
 /*   By: aybelaou <aybelaou@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 20:46:12 by aybelaou          #+#    #+#             */
-/*   Updated: 2025/01/24 21:59:55 by aybelaou         ###   ########.fr       */
+/*   Updated: 2025/01/27 21:32:24 by aybelaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ int	init_window(t_map *map)
 	map->mlx = mlx_init();
 	if (!map->mlx)
 		return (ft_printf("Failed to initialize mlx\n"), -1);
+	ft_printf("width: %d, height: %d\n", map->width, map->height);
+	ft_printf("player x: %d, player y: %d\n", map->p_x, map->p_y);
 	map->win = mlx_new_window
 		(map->mlx, map->width * TILE, map->height * TILE, "so_long");
 	if (!map->win)

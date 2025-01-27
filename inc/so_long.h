@@ -6,7 +6,7 @@
 /*   By: aybelaou <aybelaou@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 15:52:34 by aybelaou          #+#    #+#             */
-/*   Updated: 2025/01/24 20:02:56 by aybelaou         ###   ########.fr       */
+/*   Updated: 2025/01/27 21:48:27 by aybelaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,7 @@
 # include <stdbool.h>
 # include <stdio.h>
 # include "../minilibx-linux/mlx.h"
-# include "hooks.h"
 # include "flood_fill.h"
-// # include "graphics.h"
 # include "../libft/inc/gnl_inc/get_next_line.h"
 # include "../libft/inc/libft_inc/libft.h"
 # include "../libft/inc/printf_inc/ft_printf.h"
@@ -47,10 +45,10 @@ typedef struct s_map
 	int		fd;
 	int		width;
 	int		height;
-	int		player_x;
-	int		player_y;
-	int		exit_x;
-	int		exit_y;
+	int		p_x;
+	int		p_y;
+	int		e_x;
+	int		e_y;
 	int		n_collect;
 	char	**map;
 	void	*mlx;
@@ -62,6 +60,7 @@ typedef struct s_map
 	void	*player;
 }	t_map;
 
+// Parsing and map management
 int		map_init(char *filename, t_map *map);
 void	clear_newline(char *line);
 int		fill_map_struct(t_map *map, char **matrix);
@@ -76,10 +75,16 @@ int		count_character(char **matrix, int width, int height, char c);
 int		is_path_valid(t_map *map, int start_x, int start_y);
 int		find_player(t_map *map);
 int		find_exit(t_map *map);
+
+// Graphic management
 int		init_window(t_map *map);
 int		init_images(t_map *map);
 void	draw_base(t_map *map);
-void	draw_enc(t_map *map);
+void	draw_walls(t_map *map);
+void	draw_coll(t_map *map);
 void	draw_player(t_map *map);
 void	draw_exit(t_map *map);
+void	draw_empty(t_map *map);
+int		close_window(t_map *map);
+int		handle_key(int key, t_map *map);
 #endif
