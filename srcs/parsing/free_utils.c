@@ -6,7 +6,7 @@
 /*   By: aybelaou <aybelaou@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 19:28:53 by aybelaou          #+#    #+#             */
-/*   Updated: 2025/01/27 20:13:08 by aybelaou         ###   ########.fr       */
+/*   Updated: 2025/01/28 18:14:09 by aybelaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,16 +18,21 @@ void free_map(t_map *map)
 {
     int i;
 
-    i = map->height;
-    while (--i >= 0)
+    if (!map || !map->map)
+        return;
+
+    i = -1;
+    while (++i < map->height)
     {
         if (map->map[i])
         {
             free(map->map[i]);
+            map->map[i] = NULL; // Avoid dangling pointer
             ft_printf("Freed map row %d\n", i);
         }
     }
     free(map->map);
+    map->map = NULL; // Avoid dangling pointer
     ft_printf("Freed map\n");
 }
 
