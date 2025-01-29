@@ -6,7 +6,7 @@
 /*   By: aybelaou <aybelaou@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 19:38:23 by aybelaou          #+#    #+#             */
-/*   Updated: 2025/01/27 21:48:14 by aybelaou         ###   ########.fr       */
+/*   Updated: 2025/01/29 23:02:06 by aybelaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	draw_walls(t_map *map)
 	while (++y < map->height && map->map[y])
 	{
 		x = -1;
-		while (++x < map->width)
+		while (++x < map->width && map->map[y][x] != 0)
 		{
 			if (map->map[y][x] == WALL)
 				mlx_put_image_to_window
@@ -51,10 +51,10 @@ void draw_coll(t_map *map)
 	int	y;
 
 	y = -1;
-	while (++y < map->height && map->map[y])
+	while (++y < map->height && map->map[y] != 0)
 	{
 		x = -1;
-		while (++x < map->width)
+		while (++x < map->width && map->map[y][x])
 		{
 			if (map->map[y][x] == COLLECTIBLE)
 				mlx_put_image_to_window
@@ -71,7 +71,7 @@ void draw_empty(t_map *map)
 	while (++y < map->height && map->map[y])
 	{
 		x = -1;
-		while (++x < map->width)
+		while (++x < map->width && map->map[y][x] != 0)
 		{
 			if (map->map[y][x] == EMPTY_SPACE)
 				mlx_put_image_to_window

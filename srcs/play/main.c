@@ -6,7 +6,7 @@
 /*   By: aybelaou <aybelaou@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 19:23:33 by aybelaou          #+#    #+#             */
-/*   Updated: 2025/01/27 21:57:40 by aybelaou         ###   ########.fr       */
+/*   Updated: 2025/01/29 23:29:07 by aybelaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,20 +27,27 @@ static int	init_gamespace(t_map *map)
 
 int	main(int argc, char **argv)
 {
-	t_map	map;
+    t_map	map;
 
-	if (argc != 2)
-		return (ft_printf("Error\nUsage: ./so_long [map_path]\n"), -1);
-	if (map_init(argv[1], &map) == -1)
-		exit(1);
-	if (init_gamespace(&map) < 0)
-	{
-		free_map(&map);
-		return (ft_printf("Error\nFailed to initialize gamespace\n"), -1);
-	}
-	mlx_hook(map.win, 17, 0, close_window, &map);
+    if (argc != 2)
+        return (ft_printf("Error\nUsage: ./so_long [map_path]\n"), -1);
+    if (map_init(argv[1], &map) < 0)
+        exit(1);
+    if (init_gamespace(&map) < 0)
+    {
+        free_map(&map);
+        return (ft_printf("Error\nFailed to initialize gamespace\n"), -1);
+    }
+    mlx_hook(map.win, 17, 0, close_window, &map);
     mlx_key_hook(map.win, handle_key, &map);
-	mlx_loop(map.mlx);
-	exit(0);
-	return (0);
+    if (mlx_loop(map.mlx) < 0)
+    {
+        free_map(&map);
+        return (ft_printf("Error\nmlx_loop failed\n"), -1);
+    }
+    free_map(&map);
+    mlx_destroy_display(map.mlx);
+    free(map.mlx);
+    exit(0);
+    return (0);
 }

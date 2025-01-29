@@ -6,7 +6,7 @@
 /*   By: aybelaou <aybelaou@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 20:46:12 by aybelaou          #+#    #+#             */
-/*   Updated: 2025/01/27 21:32:24 by aybelaou         ###   ########.fr       */
+/*   Updated: 2025/01/29 23:23:35 by aybelaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,14 @@ int	init_window(t_map *map)
 	map->mlx = mlx_init();
 	if (!map->mlx)
 		return (ft_printf("Failed to initialize mlx\n"), -1);
-	ft_printf("width: %d, height: %d\n", map->width, map->height);
-	ft_printf("player x: %d, player y: %d\n", map->p_x, map->p_y);
 	map->win = mlx_new_window
 		(map->mlx, map->width * TILE, map->height * TILE, "so_long");
-	if (!map->win)
-		return (ft_printf("Failed to create window\n"), -1);
+    if (!map->win)
+    {
+        mlx_destroy_display(map->mlx);
+        free(map->mlx);
+        return (-1);
+    }
 	return (0);
 }
 
@@ -40,6 +42,23 @@ int	init_images(t_map *map)
 		(map->mlx, "srcs/assets/player.xpm", &map->width, &map->height);
 	if (!map->wall || !map->empty_space
 		|| !map->collectible || !map->exit || !map->player)
+	{
+		free_images(map);	
 		return (ft_printf("Failed to load images\n"), -1);
+	}
 	return (0);
+}
+
+void	free_images(t_map *map)
+{
+    if (map->wall)
+        mlx_destroy_image(map->mlx, map->wall);
+    if (map->empty_space)
+        mlx_destroy_image(map->mlx, map->empty_space);
+    if (map->collectible)
+        mlx_destroy_image(map->mlx, map->collectible);
+    if (map->exit)
+        mlx_destroy_image(map->mlx, map->exit);
+    if (map->player)
+        mlx_destroy_image(map->mlx, map->player);
 }

@@ -6,7 +6,7 @@
 /*   By: aybelaou <aybelaou@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 16:28:10 by aybelaou          #+#    #+#             */
-/*   Updated: 2025/01/27 21:03:14 by aybelaou         ###   ########.fr       */
+/*   Updated: 2025/01/29 22:51:39 by aybelaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,5 +78,5 @@ int	map_init(char *filename, t_map *map)
 		ft_printf("Invalid path in map\n");
 		return (free_matrix(matrix), -1);
 	}
-	return (ft_printf("Valid path in map\n"), 0);
+	return (ft_printf("Valid path in map\n"), close(map->fd), 0);
 }

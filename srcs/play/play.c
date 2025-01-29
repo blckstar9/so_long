@@ -6,7 +6,7 @@
 /*   By: aybelaou <aybelaou@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 19:36:53 by aybelaou          #+#    #+#             */
-/*   Updated: 2025/01/27 21:48:55 by aybelaou         ###   ########.fr       */
+/*   Updated: 2025/01/29 23:17:01 by aybelaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,13 @@
 
 int	close_window(t_map *map)
 {
-	mlx_destroy_window(map->mlx, map->win);
-	free_map(map);
-	exit(0);
-	return (0);
+    mlx_destroy_window(map->mlx, map->win);
+	free_images(map);
+    free_map(map);
+    mlx_destroy_display(map->mlx);
+    free(map->mlx);
+    exit(0);
+    return (0);
 }
 
 static int	move_player(t_map *map, int x, int y)
@@ -28,7 +31,7 @@ static int	move_player(t_map *map, int x, int y)
 	new_x = map->p_x + x;
 	new_y = map->p_y + y;
 	if (map->map[new_y][new_x] == WALL)
-		return (0);
+		return (-1);
 	if (map->map[new_y][new_x] == COLLECTIBLE)
 	{
 		map->n_collect--;
@@ -37,8 +40,7 @@ static int	move_player(t_map *map, int x, int y)
 	if (new_x == map->e_x && new_y == map->e_y && map->n_collect == 0)
 	{
 		ft_printf("You won!\n");
-		free_map(map);
-		exit(0);
+		return (close_window(map));
 	}
 	map->map[map->p_y][map->p_x] = EMPTY_SPACE;
 	map->p_x = new_x;
@@ -62,7 +64,7 @@ static int	translate_key(int key, int *x, int *y)
 	else if (key == XK_d)
 		*x = 1;
 	else
-		return (0);
+		return (-1);
 	return (1);
 }
 

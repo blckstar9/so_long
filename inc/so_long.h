@@ -6,7 +6,7 @@
 /*   By: aybelaou <aybelaou@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 15:52:34 by aybelaou          #+#    #+#             */
-/*   Updated: 2025/01/27 21:48:27 by aybelaou         ###   ########.fr       */
+/*   Updated: 2025/01/29 23:16:49 by aybelaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,4 +87,5 @@ void	draw_exit(t_map *map);
 void	draw_empty(t_map *map);
 int		close_window(t_map *map);
 int		handle_key(int key, t_map *map);
+void	free_images(t_map *map);
 #endif
