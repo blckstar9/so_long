@@ -6,7 +6,7 @@
 #    By: aybelaou <aybelaou@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/30 16:59:31 by aybelaou          #+#    #+#              #
-#    Updated: 2025/01/27 20:51:11 by aybelaou         ###   ########.fr        #
+#    Updated: 2025/01/30 22:01:26 by aybelaou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -61,10 +61,12 @@ $(LIBFT):
 	@make -C libft
 
 fclean : clean
+	@make clean -C $(MLX_DIR)
 	@make fclean -C libft
 	@$(RM) $(NAME)
 
 clean :
+	@make clean -C $(MLX_DIR)
 	@make clean -C libft
 	@$(RM) -r $(OBJS_DIR)
 	@$(RM) srcs/*.o

@@ -6,7 +6,7 @@
 /*   By: aybelaou <aybelaou@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 19:36:53 by aybelaou          #+#    #+#             */
-/*   Updated: 2025/01/29 23:17:01 by aybelaou         ###   ########.fr       */
+/*   Updated: 2025/01/30 21:46:36 by aybelaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 int	close_window(t_map *map)
 {
-    mlx_destroy_window(map->mlx, map->win);
+	mlx_destroy_window(map->mlx, map->win);
 	free_images(map);
-    free_map(map);
-    mlx_destroy_display(map->mlx);
-    free(map->mlx);
-    exit(0);
-    return (0);
+	free_map(map);
+	mlx_destroy_display(map->mlx);
+	free(map->mlx);
+	exit(0);
+	return (0);
 }
 
 static int	move_player(t_map *map, int x, int y)
@@ -35,11 +35,11 @@ static int	move_player(t_map *map, int x, int y)
 	if (map->map[new_y][new_x] == COLLECTIBLE)
 	{
 		map->n_collect--;
-		ft_printf("Collectibles left: %d\n", map->n_collect);
+		ft_printf(MG "Collectibles left: %d\n" RS, map->n_collect);
 	}
 	if (new_x == map->e_x && new_y == map->e_y && map->n_collect == 0)
 	{
-		ft_printf("You won!\n");
+		ft_printf(GR "You won!\n" RS);
 		return (close_window(map));
 	}
 	map->map[map->p_y][map->p_x] = EMPTY_SPACE;

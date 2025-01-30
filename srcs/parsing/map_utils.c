@@ -6,7 +6,7 @@
 /*   By: aybelaou <aybelaou@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 18:36:01 by aybelaou          #+#    #+#             */
-/*   Updated: 2025/01/24 22:02:31 by aybelaou         ###   ########.fr       */
+/*   Updated: 2025/01/30 21:45:18 by aybelaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int	get_matrix_dimensions(int *width, int *height, char *filename)
 	{
 		if ((int)ft_strlen(line) != *width)
 		{
-			ft_printf("Map is not rectangular\n");
+			ft_printf(RED "Error\nMap is not rectangular\n" RS);
 			return (free(line), close(fd), -1);
 		}
 		(*height)++;
@@ -83,7 +83,7 @@ int	check_matrix_interior(t_map *map, char **matrix, int width, int height)
 			&& matrix[i][j] != COLLECTIBLE && matrix[i][j] != EXIT
 			&& matrix[i][j] != PLAYER)
 			{
-				ft_printf("Invalid character '%c' at (%d, %d)\n",
+				ft_printf(RED "Error\nInvalid character '%c' at (%d, %d)\n" RS,
 					matrix[i][j], i, j);
 				return (-1);
 			}

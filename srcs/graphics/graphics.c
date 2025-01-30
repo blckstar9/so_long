@@ -6,7 +6,7 @@
 /*   By: aybelaou <aybelaou@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 19:38:23 by aybelaou          #+#    #+#             */
-/*   Updated: 2025/01/29 23:02:06 by aybelaou         ###   ########.fr       */
+/*   Updated: 2025/01/30 21:13:05 by aybelaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	draw_walls(t_map *map)
 	}
 }
 
-void draw_coll(t_map *map)
+void	draw_coll(t_map *map)
 {
 	int	x;
 	int	y;
@@ -62,7 +62,8 @@ void draw_coll(t_map *map)
 		}
 	}
 }
-void draw_empty(t_map *map)
+
+void	draw_empty(t_map *map)
 {
 	int	x;
 	int	y;
@@ -78,20 +79,4 @@ void draw_empty(t_map *map)
 					(map->mlx, map->win, map->empty_space, x * TILE, y * TILE);
 		}
 	}
-}
-
-void	draw_player(t_map *map)
-{
-	//find_player(map);
-	mlx_put_image_to_window
-		(map->mlx, map->win, map->player
-			, map->p_x * TILE, map->p_y * TILE);
-}
-
-void	draw_exit(t_map *map)
-{
-	if (map->n_collect == 0)
-		mlx_put_image_to_window
-			(map->mlx, map->win, map->exit
-				, map->e_x * TILE, map->e_y * TILE);
 }

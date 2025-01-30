@@ -6,7 +6,7 @@
 /*   By: aybelaou <aybelaou@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 15:52:34 by aybelaou          #+#    #+#             */
-/*   Updated: 2025/01/29 23:16:49 by aybelaou         ###   ########.fr       */
+/*   Updated: 2025/01/30 21:53:14 by aybelaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,6 @@
 # include "../libft/inc/libft_inc/libft.h"
 # include "../libft/inc/printf_inc/ft_printf.h"
 
-# define W_HEIGHT 1080
-# define W_WIDTH 1920
 # define TILE 64
 # define WALL '1'
 # define EMPTY_SPACE '0'
@@ -34,12 +32,13 @@
 # define EXIT 'E'
 # define PLAYER 'P'
 
-// typedef struct s_window
-// {
-	
-// 	void	*mlx;
-// 	void	*win;
-// }	t_window;
+# define RED "\033[31m"
+# define RS "\033[0m"
+# define CY "\033[36m"
+# define YL "\033[33m"
+# define GR "\033[32m"
+# define MG "\033[35m"
+
 typedef struct s_map
 {
 	int		fd;
