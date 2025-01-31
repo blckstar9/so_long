@@ -24,9 +24,9 @@ void	reset_list(t_charlist **list)
 {
 	t_charlist	*last;
 	t_charlist	*n;
-	char	*b;
-	int		i;
-	int		len;
+	char		*b;
+	int			i;
+	int			len;
 
 	last = ft_charlstlast(*list);
 	if (!list || !*list || !last || !last->content)
@@ -155,7 +155,7 @@ void	create_list(t_charlist **list, int fd)
 char	*get_next_line(int fd)
 {
 	static t_charlist	*list = NULL;
-	char			*next_line;
+	char				*next_line;
 
 	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, NULL, 0) < 0)
 	{

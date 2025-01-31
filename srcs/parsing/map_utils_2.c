@@ -6,33 +6,11 @@
 /*   By: aybelaou <aybelaou@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 19:53:01 by aybelaou          #+#    #+#             */
-/*   Updated: 2025/01/30 21:43:51 by aybelaou         ###   ########.fr       */
+/*   Updated: 2025/01/31 17:22:22 by aybelaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/so_long.h"
-
-int	count_character(char **matrix, int width, int height, char c)
-{
-	int	i;
-	int	j;
-	int	count;
-
-	count = 0;
-	i = 1;
-	while (i < height - 1)
-	{
-		j = 1;
-		while (j < width - 1)
-		{
-			if (matrix[i][j] == c)
-				count++;
-			j++;
-		}
-		i++;
-	}
-	return (count);
-}
 
 static int	is_collectible_present(t_map *map, char **matrix,
 										int width, int height)
@@ -70,6 +48,28 @@ static int	is_player_present(char **matrix, int width, int height)
 		return (1);
 	else
 		return (-1);
+}
+
+int	count_character(char **matrix, int width, int height, char c)
+{
+	int	i;
+	int	j;
+	int	count;
+
+	count = 0;
+	i = 1;
+	while (i < height - 1)
+	{
+		j = 1;
+		while (j < width - 1)
+		{
+			if (matrix[i][j] == c)
+				count++;
+			j++;
+		}
+		i++;
+	}
+	return (count);
 }
 
 int	is_map_valid(t_map *map, char **matrix, int width, int height)

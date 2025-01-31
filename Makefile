@@ -6,18 +6,18 @@
 #    By: aybelaou <aybelaou@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/30 16:59:31 by aybelaou          #+#    #+#              #
-#    Updated: 2025/01/30 22:01:26 by aybelaou         ###   ########.fr        #
+#    Updated: 2025/01/31 17:40:39 by aybelaou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # -----------------------------------Colors------------------------------------
 
-RED		=\033[0;31m
-GREEN	=\033[0;32m
-YELLOW	=\033[1;33m
-BLUE	=\033[0;34m
-ORANGE	=\033[38;2;255;165;0m
-RESET	=\033[0m
+ORANGE	= \033[38;2;255;165;0m
+BOLD_ORANGE = \033[1;38;5;214m
+BG_YELLOW = \033[48;5;214m
+MAGENTA = \033[0;35m
+BOLD_MAGENTA = \033[1;35m
+RESET	= \033[0m
 
 # ---------------------------------Compilation---------------------------------
 
@@ -29,9 +29,7 @@ RM 		= rm -rf
 OBJS_DIR = objs
 SRCS_DIR = srcs
 SRCS 	= $(wildcard $(SRCS_DIR)/parsing/*.c) $(wildcard $(SRCS_DIR)/flood_fill/*.c) \
-			$(wildcard $(SRCS_DIR)/graphics/*.c) $(wildcard $(SRCS_DIR)/play/*.c) \
-			
-
+			$(wildcard $(SRCS_DIR)/graphics/*.c) $(wildcard $(SRCS_DIR)/play/*.c)
 OBJS = $(addprefix $(OBJS_DIR)/, $(SRCS:.c=.o))
 MLX_DIR = ./minilibx-linux
 MLX_PATH = minilibx-linux/libmlx.a
@@ -48,10 +46,12 @@ MLX_LIB = -L $(MLX_DIR) -lmlx
 all : $(NAME)
 
 $(NAME) : $(OBJS) $(LIBFT)
+	@echo "$(ORANGE)Building mlx...$(RESET)"
 	@make -C $(MLX_DIR)
-	@echo "$(GREEN)Building libft...$(RESET)"
-	@make -C libft
+	@echo "$(ORANGE)Minilibx buildt...$(RESET)"
+	@echo "$(ORANGE)Building $(NAME)...$(RESET)"
 	@$(CC) $(OBJS) $(LIBFT) $(CFLAGS) -g $(MLX_LIB) $(MLX) -o $(NAME)
+	@echo "$(BOLD_ORANGE)$(NAME) is ready!$(RESET)"
 
 $(OBJS_DIR)/%.o: %.c
 	@mkdir -p $(dir $@)
@@ -61,16 +61,23 @@ $(LIBFT):
 	@make -C libft
 
 fclean : clean
+	@echo "$(MAGENTA)Removing the mlx...$(RESET)"
 	@make clean -C $(MLX_DIR)
+	@echo "$(MAGENTA)Removing the libft...$(RESET)"
 	@make fclean -C libft
 	@$(RM) $(NAME)
+	@echo "$(BOLD_MAGENTA)$(NAME) removed!$(RESET)"
 
 clean :
+	@echo "$(MAGENTA)Cleaning the mlx object files...$(RESET)"
 	@make clean -C $(MLX_DIR)
+	@echo "$(MAGENTA)Cleaning libft object files...$(RESET)"
 	@make clean -C libft
 	@$(RM) -r $(OBJS_DIR)
 	@$(RM) srcs/*.o
+	@echo "$(BOLD_MAGENTA)All object files cleaned!$(RESET)"
 
 re : fclean all
+	@echo "$(BG_YELLOW)Cleaned and rebuilt everything!$(DEF_COLOR)"
 
 .PHONY: all clean fclean re

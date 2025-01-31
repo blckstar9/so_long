@@ -6,7 +6,7 @@
 #    By: aybelaou <aybelaou@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/14 18:17:35 by aybelaou          #+#    #+#              #
-#    Updated: 2025/01/24 20:13:31 by aybelaou         ###   ########.fr        #
+#    Updated: 2025/01/31 15:53:13 by aybelaou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,9 +45,9 @@ BG_YELLOW = \033[48;5;214m
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	@echo "$(ORANGE)Compiling...$(DEF_COLOR)"
+	@echo "$(ORANGE)Building the libft...$(DEF_COLOR)"
 	@ar rcs $(NAME) $(OBJ)
-	@echo "$(BOLD_ORANGE)Library created.$(DEF_COLOR)"
+	@echo "$(BOLD_ORANGE)Libft built.$(DEF_COLOR)"
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	@mkdir -p $(@D)

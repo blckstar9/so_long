@@ -6,7 +6,7 @@
 /*   By: aybelaou <aybelaou@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 18:24:35 by aybelaou          #+#    #+#             */
-/*   Updated: 2024/12/20 15:03:12 by aybelaou         ###   ########.fr       */
+/*   Updated: 2025/01/31 17:30:25 by aybelaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ t_voidlist	*ft_lstmap(t_voidlist *lst, void *(*f)(void *), void (*del)(void *))
 {
 	t_voidlist	*n_list;
 	t_voidlist	*n_obj;
-	void	*new_content;
+	void		*new_content;
 
 	if (!lst || !f || !del)
 		return (NULL);

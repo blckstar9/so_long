@@ -6,7 +6,7 @@
 /*   By: aybelaou <aybelaou@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 16:28:10 by aybelaou          #+#    #+#             */
-/*   Updated: 2025/01/30 21:40:26 by aybelaou         ###   ########.fr       */
+/*   Updated: 2025/01/31 17:09:34 by aybelaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static int	check_matrix(t_map *map, char **matrix, int width, int height)
 	return (0);
 }
 
-int	fill_map_struct(t_map *map, char **matrix)
+static int	fill_map_struct(t_map *map, char **matrix)
 {
 	char	*line;
 	int		i;
@@ -58,7 +58,7 @@ int	map_init(char *filename, t_map *map)
 
 	ft_printf(YL "Initializing map from file: %s\n" RS, filename);
 	if (!has_ber_extension(filename))
-		return (-1);
+		return (ft_printf(RED "Error\nIncorrect file\n" RS), -1);
 	if (get_matrix_dimensions(&map->width, &map->height, filename) < 0)
 		return (-1);
 	map->fd = open(filename, O_RDONLY);

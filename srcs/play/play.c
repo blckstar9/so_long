@@ -6,22 +6,11 @@
 /*   By: aybelaou <aybelaou@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 19:36:53 by aybelaou          #+#    #+#             */
-/*   Updated: 2025/01/30 21:46:36 by aybelaou         ###   ########.fr       */
+/*   Updated: 2025/01/31 17:12:05 by aybelaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/so_long.h"
-
-int	close_window(t_map *map)
-{
-	mlx_destroy_window(map->mlx, map->win);
-	free_images(map);
-	free_map(map);
-	mlx_destroy_display(map->mlx);
-	free(map->mlx);
-	exit(0);
-	return (0);
-}
 
 static int	move_player(t_map *map, int x, int y)
 {
@@ -68,6 +57,17 @@ static int	translate_key(int key, int *x, int *y)
 	return (1);
 }
 
+int	close_window(t_map *map)
+{
+	mlx_destroy_window(map->mlx, map->win);
+	free_images(map);
+	free_map(map);
+	mlx_destroy_display(map->mlx);
+	free(map->mlx);
+	exit(0);
+	return (0);
+}
+
 int	handle_key(int key, t_map *map)
 {
 	int	x;
@@ -83,6 +83,7 @@ int	handle_key(int key, t_map *map)
 			draw_coll(map);
 			draw_player(map);
 			draw_exit(map);
+			ft_printf(YL "Moves: %d\n" RS, map->n_moves++);
 		}
 	}
 	return (0);

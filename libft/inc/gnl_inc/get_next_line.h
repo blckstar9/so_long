@@ -21,10 +21,10 @@
 
 typedef struct s_charlist
 {
-	char			*content;
+	char				*content;
 	struct s_charlist	*next;
 }	t_charlist;
-t_charlist		*ft_charlstlast(t_charlist *lst);
+t_charlist	*ft_charlstlast(t_charlist *lst);
 int			found_nl(t_charlist *list);
 int			len_line(t_charlist *list);
 void		strcpy_nl(t_charlist *list, char *line);

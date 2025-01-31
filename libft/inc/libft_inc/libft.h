@@ -6,7 +6,7 @@
 /*   By: aybelaou <aybelaou@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 17:56:13 by aybelaou          #+#    #+#             */
-/*   Updated: 2024/12/20 15:01:51 by aybelaou         ###   ########.fr       */
+/*   Updated: 2025/01/31 17:29:19 by aybelaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,17 +56,17 @@ void				ft_putendl_fd(char *s, int fd);
 void				ft_putnbr_fd(int n, int fd);
 typedef struct s_voidlist
 {
-	void			*content;
+	void				*content;
 	struct s_voidlist	*next;
-}					t_voidlist;
-t_voidlist				*ft_lstnew(void *content);
+}						t_voidlist;
+t_voidlist			*ft_lstnew(void *content);
 void				ft_lstadd_front(t_voidlist **lst, t_voidlist *new);
 int					ft_lstsize(t_voidlist *lst);
-t_voidlist				*ft_lstlast(t_voidlist *lst);
+t_voidlist			*ft_lstlast(t_voidlist *lst);
 void				ft_lstadd_back(t_voidlist **lst, t_voidlist *new);
 void				ft_lstdelone(t_voidlist *lst, void (*del)(void *));
 void				ft_lstclear(t_voidlist **lst, void (*del)(void *));
 void				ft_lstiter(t_voidlist *lst, void (*f)(void *));
-t_voidlist				*ft_lstmap(t_voidlist *lst, void *(*f)(void *),
+t_voidlist			*ft_lstmap(t_voidlist *lst, void *(*f)(void *),
 						void (*del)(void *));
 #endif

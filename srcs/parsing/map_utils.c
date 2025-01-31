@@ -6,7 +6,7 @@
 /*   By: aybelaou <aybelaou@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 18:36:01 by aybelaou          #+#    #+#             */
-/*   Updated: 2025/01/30 21:45:18 by aybelaou         ###   ########.fr       */
+/*   Updated: 2025/01/31 17:20:05 by aybelaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int	get_matrix_dimensions(int *width, int *height, char *filename)
 		return (-1);
 	line = get_next_line(fd);
 	if (!line)
-		return (close(fd), -1);
+		return (ft_printf(RED "Error\nEmpty or bad file\n" RS), close(fd), -1);
 	clear_newline(line);
 	*width = ft_strlen(line);
 	*height = 0;

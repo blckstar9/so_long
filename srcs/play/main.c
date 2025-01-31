@@ -6,7 +6,7 @@
 /*   By: aybelaou <aybelaou@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 19:23:33 by aybelaou          #+#    #+#             */
-/*   Updated: 2025/01/30 21:52:09 by aybelaou         ###   ########.fr       */
+/*   Updated: 2025/01/31 15:11:07 by aybelaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ int	main(int argc, char **argv)
 		free_map(&map);
 		return (ft_printf(RED "Error\nFailed to initialize game\n" RS), -1);
 	}
+	map.n_moves = 0;
 	mlx_hook(map.win, 17, 0, close_window, &map);
 	mlx_key_hook(map.win, handle_key, &map);
 	if (mlx_loop(map.mlx) < 0)

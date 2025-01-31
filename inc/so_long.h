@@ -6,7 +6,7 @@
 /*   By: aybelaou <aybelaou@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 15:52:34 by aybelaou          #+#    #+#             */
-/*   Updated: 2025/01/30 21:53:14 by aybelaou         ###   ########.fr       */
+/*   Updated: 2025/01/31 17:10:53 by aybelaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ typedef struct s_map
 	int		e_x;
 	int		e_y;
 	int		n_collect;
+	int		n_moves;
 	char	**map;
 	void	*mlx;
 	void	*win;
@@ -62,7 +63,6 @@ typedef struct s_map
 // Parsing and map management
 int		map_init(char *filename, t_map *map);
 void	clear_newline(char *line);
-int		fill_map_struct(t_map *map, char **matrix);
 int		get_matrix_dimensions(int *width, int *height, char *filename);
 int		check_matrix_walls(char **matrix, int width, int height);
 int		check_matrix_interior(t_map *map, char **matrix, int width, int height);
